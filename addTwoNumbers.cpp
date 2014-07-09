@@ -50,7 +50,7 @@ public:
 		  else
 		  {
 			  ListNode * listtemp;
-		  //************************l2 is NULL*************************************
+		  //************************l2 is NULL**************************************
 		   if(NULL ==  l2)
 		   {
 			   ListNode* temp =  new ListNode (( l1 -> val + flag)%10);
