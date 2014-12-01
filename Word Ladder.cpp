@@ -19,20 +19,20 @@ using namespace std;
 
 class Solution {
 public:
-    int ladderLength(string start, string end, unordered_set<string> &dict) {
-		if(start.length() != end.length() || dict.empty())
-			return 0;
-        unordered_map<string ,int> dist;
-		queue<string>  path;
-		path.push(start);
-		dist[start] = 1;
-		while( !path.empty()){
-			string word = path.front();
-			path.pop();
-			for(int i = 0; i < word.length(); ++i){
-				string temp = word;
-				for(char c = 'a'; c <= 'z'; ++c){
-					 temp[i] = c; 
+  int ladderLength(string start, string end, unordered_set<string> &dict) {
+    if(start.length() != end.length() || dict.empty())
+      return 0;
+    unordered_map<string ,int> dist;
+    queue<string>  path;
+    path.push(start);
+    dist[start] = 1;
+    while( !path.empty()){
+      string word = path.front();
+      path.pop();
+      for(int i = 0; i < word.length(); ++i){
+	string temp = word;
+	for(char c = 'a'; c <= 'z'; ++c){
+	  temp[i] = c; 
 					 if(temp == end)
 						return dist[word] + 1;
 					 if(dict.count(temp) > 0 && dist.count(temp) == 0)

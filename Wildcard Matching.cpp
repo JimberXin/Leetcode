@@ -20,62 +20,62 @@ using namespace std;
 
 class Solution {
 public:
-    bool isMatch(const char *s, const char *p) {
-		/*
-        const char* prevS =  NULL;
-		const char* prevP =  NULL;
-		bool start = false;
-		while( *s != '\0')
-		{
-			  if(*p == '?'){
-				   ++s;
-				   ++p;
-			  } else if ( *p == '*'){
-				   prevP = ++p;
-				   prevS = s;
-				   start = true;
-			  } else  { // *p is not '?' nor '*'
-				    if(*p == *s){
-						++s;
-						++p;
-					} else if(start){  //found *p != *s, traceback
-						 p = prevP;
-						 s = ++ prevS;
-					}else   return false;
-			  }
-		}// end for while
-		while(*p == '*') ++p;
-		return  (*p=='\0');
-		*/ 
-		const char* star=NULL;
-        const char* ss=s;
-        while (*s){
-            //match, only in two cases,  adancing both pointers.
-            if ( (*p=='?') || (*p==*s) ) { s++; p++; continue;} 
+  bool isMatch(const char *s, const char *p) {
+    /*
+      const char* prevS =  NULL;
+      const char* prevP =  NULL;
+      bool start = false;
+      while( *s != '\0')
+      {
+       if(*p == '?'){
+       ++s;
+       ++p;
+      } else if ( *p == '*'){
+       prevP = ++p;
+       prevS = s;
+       start = true;
+      } else  { // *p is not '?' nor '*'
+       if(*p == *s){
+       ++s;
+       ++p;
+      } else if(start){  //found *p != *s, traceback
+       p = prevP;
+       s = ++ prevS;
+      }else   return false;
+     }
+      }// end for while
+       while(*p == '*') ++p;
+       return  (*p=='\0');
+    */ 
+    const char* star=NULL;
+    const char* ss=s;
+    while (*s){
+      //match, only in two cases,  adancing both pointers.
+      if ( (*p=='?') || (*p==*s) ) { s++; p++; continue;} 
 
-            // * found in pattern p, track index of *, records the current position
-            if (*p=='*'){ star=p++;  ss=s; continue;} 
+      // * found in pattern p, track index of *, records the current position
+      if (*p=='*'){ star=p++;  ss=s; continue;} 
 
-            //current characters didn't match, last pattern pointer was *, current pattern pointer is not *
-            //only advancing pattern pointer
-            if ( star != '\0' ){ p = star+1;  s=++ss;continue;} 
+      //current characters didn't match, last pattern pointer was *, current pattern pointer is not *
+      //only advancing pattern pointer
+      if ( star != '\0' ){ p = star+1;  s=++ss;continue;} 
 
-           //current pattern pointer is not star, last patter pointer was not *
-           //characters do not match
-            return false;
-        }
-       //check for remaining characters in pattern
-        while (*p=='*') p++;
-        return (*p == '\0');  
+      //current pattern pointer is not star, last patter pointer was not *
+      //characters do not match
+      return false;
     }
+    //check for remaining characters in pattern
+    while (*p=='*') p++;
+    return (*p == '\0');  
+  }
 };
 
 int main(){
-	Solution solu;
-	const char* t = "c*ab*c";
-	const char* s= "cddabbac";
-	bool result = solu.isMatch(s,t);
-	cout << result << endl;
-	getchar();
-	return 0;
+  Solution solu;
+  const char* t = "c*ab*c";
+  const char* s= "cddabbac";
+  bool result = solu.isMatch(s,t);
+  cout << result << endl;
+  getchar();
+  return 0;
 }
