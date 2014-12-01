@@ -14,38 +14,38 @@ using namespace std;
 //for each index of i in S, add one length of each words every time, if not exist, break, if counts number overflow, break
 class Solution {
 public:
-    vector<int> findSubstring(string S, vector<string> &L) {
-         vector<int> result;
-		 map<string, int> words;
-		 map<string, int> cur_counts;
-		 int wordNum = L.size();  
-		 int wordLen = L[0].size();
-		 for(int i = 0; i < wordNum;++i)
-			 words[ L[i] ]++;  // counts each words' frequence in L
+  vector<int> findSubstring(string S, vector<string> &L) {
+    vector<int> result;
+    map<string, int> words;
+    map<string, int> cur_counts;
+    int wordNum = L.size();  
+    int wordLen = L[0].size();
+    for(int i = 0; i < wordNum;++i)
+      words[ L[i] ]++;  // counts each words' frequence in L
 
-		 int iterNum = S.length() - wordNum*wordLen;
-		 for(int i = 0; i <= iterNum; ++i)
-		 {
-			     int j;
-			     for(j = 0; j < wordNum; ++j)
-				 {
-					    string temp = S.substr(i + j*wordLen, wordLen); // same length in S, from i+j*wordLen
-						if(words.count(temp) == 0)
-							break;  // temp does not exist in L
-						cur_counts[temp]++;
-						if(words[temp] < cur_counts[temp])
-							break;   //temp exist 1 more times in S than in L
-				 }
-				 if( j == wordNum)
-					 result.push_back(i);
-				 cur_counts.clear();
-		 }
-		 return result;
+    int iterNum = S.length() - wordNum*wordLen;
+    for(int i = 0; i <= iterNum; ++i)
+      {
+	int j;
+	for(j = 0; j < wordNum; ++j)
+	  {
+	    string temp = S.substr(i + j*wordLen, wordLen); // same length in S, from i+j*wordLen
+	    if(words.count(temp) == 0)
+	      break;  // temp does not exist in L
+	    cur_counts[temp]++;
+	    if(words[temp] < cur_counts[temp])
+	      break;   //temp exist 1 more times in S than in L
+	  }
+	if( j == wordNum)
+	  result.push_back(i);
+	cur_counts.clear();
+      }
+    return result;
     }
 };
 
 int main(){
-	Solution s;
+  Solution s;
 	string S = "lingmindraboofooowingdingbarrwingmonkeypoundcake";
 	vector<string> L;
 	L.push_back("fooo");
