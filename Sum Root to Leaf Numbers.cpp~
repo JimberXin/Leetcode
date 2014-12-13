@@ -1,0 +1,84 @@
+#include<iostream>
+#include<stack>
+
+using namespace std;
+
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+struct TreeNode
+{
+	   int val;
+	   TreeNode* left;
+	   TreeNode* right;
+	   TreeNode(int x): val(x),left(NULL),right(NULL){}
+};
+
+class Solution {
+public:
+    int sumNumbers(TreeNode *root) 
+    {
+        //
+		   int result = 0;
+		   int sum = 0;
+           stack<TreeNode*> nodeStack;
+		   TreeNode* last = NULL;
+		   while(NULL != root || !nodeStack.empty())
+		   {
+			        while(NULL != root)
+					{
+						nodeStack.push(root);
+						result  = 10*result + root -> val;
+						root = root -> left;
+					}
+					  root = nodeStack.top();
+					  if(NULL == root ->right || last == root -> right)   // if the right has been visited, visit the curent node
+					{
+						  if(NULL == root -> left && NULL == root -> right)
+							       sum += result;
+						     last = root;
+							 result /= 10;
+							 nodeStack.pop();
+							 root = NULL;					
+					}
+					  else                                                   // if the right node has not visited, visit it
+						  root = root -> right;  					  
+		   }
+		   return sum;
+        //       
+    }
+
+  TreeNode* createTree()
+   {
+      int data;
+	  TreeNode* root;
+	  cin >> data;
+	  if(data == -1)
+		  root = NULL;
+	  else
+	    {
+		    root = new TreeNode(data);
+			root -> left  = createTree();
+			root -> right = createTree();
+	    }
+	   return root;
+    }
+  };
+
+int main(void)
+{
+	 // Solution s;
+	 // TreeNode* root = s.createTree();
+	 //int result = s.sumNumbers(root);
+	 // cout << result << endl;
+	  getchar();
+	  cin.get();
+      return 0;
+}
+	  
