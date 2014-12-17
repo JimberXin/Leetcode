@@ -3,61 +3,76 @@
 #include<vector>
 using namespace std;
 
+/*
+Given an array S of n integers, are there elements a, b, c, and d in S such that a + b + c + d = target? 
+Find all unique quadruplets in the array which gives the sum of target.
+
+Note:
+Elements in a quadruplet (a,b,c,d) must be in non-descending order. (ie, a ≤ b ≤ c ≤ d)
+The solution set must not contain duplicate quadruplets.
+    For example, given array S = {1 0 -1 0 -2 2}, and target = 0.
+
+    A solution set is:
+    (-1,  0, 0, 1)
+    (-2, -1, 1, 2)
+    (-2,  0, 0, 2)
+*/
+
 class Solution {
 public:
-	//fixed i and j,   traversing left and right of the last 2 elements
-    vector<vector<int> > fourSum(vector<int> &num, int target) {
-        int n = num.size();
-		vector<vector<int> > result;
-		vector<int> each;
-		if(n < 3)
-			return result;
-		sort(num.begin(), num.end());
-		for(int i = 0; i < n; ++i){
-			if( i >0 && num[i] == num[i-1]) continue;
-
-			for(int j = i + 1; j < n; ++j){
-				if( j > i+1 && num[j] == num[j-1]) continue;
-
-				int left = j + 1;
-				int right = n - 1;
-				while( left < right){
-					if(left > j+1 && num[left] == num[left-1]){
-						 ++left;
-						 continue;
-					}
-					if(right < n-1 && num[right] == num[right+1]){ //not right-1, but right+1
-						--right;
-						continue;
-					}
-					int sum = num[i] + num[j] + num[left] + num[right];
-					if(sum < target)
-						++left;
-					else if(sum > target)
-						--right;
-					else{
-						     each.push_back(num[i]);
-							 each.push_back(num[j]);
-							 each.push_back(num[left]);
-							 each.push_back(num[right]);
-							 result.push_back(each);
-							 each.clear();
-							 ++left;
-							// break; //not break;
-					      }
-				   }//end while
-               }//end for j
-          }//end for i
-		  return result;
-	 }
+  //fixed i and j, traversing left and right of the last 2 elements
+  vector<vector<int> > fourSum(vector<int> &num, int target) {
+    int n = num.size();
+    vector<vector<int> > result;
+    vector<int> each;
+    if(n < 3)
+      return result;
+    sort(num.begin(), num.end());
+    for(int i = 0; i < n; ++i){
+      if( i >0 && num[i] == num[i-1]) continue;
+      
+      for(int j = i + 1; j < n; ++j){
+	if( j > i+1 && num[j] == num[j-1]) continue;
+	
+	int left = j + 1;
+	int right = n - 1;
+	while( left < right){
+	  if(left > j+1 && num[left] == num[left-1]){
+	    ++left;
+	    continue;
+	  }
+	  if(right < n-1 && num[right] == num[right+1]){ //not right-1, but right+1
+	    --right;
+	    continue;
+	  }
+	  int sum = num[i] + num[j] + num[left] + num[right];
+	  if(sum < target)
+	    ++left;
+	  else if(sum > target)
+	    --right;
+	  else{
+	    each.push_back(num[i]);
+	    each.push_back(num[j]);
+	    each.push_back(num[left]);
+	    each.push_back(num[right]);
+	    result.push_back(each);
+	    each.clear();
+	    ++left;
+	    // break; //not break;
+	  }
+	}//end while
+      }//end for j
+    }//end for i
+    return result;
+  }
 };
 
 int main(){
-	Solution s;
-	//suchs!!!!!!!!!!!
-	/*
-	int arr[] = {91277418,66271374,38763793,4092006,11415077,60468277,1122637,72398035,-62267800,
-		22082642,60359529,-16540633,92671879,-64462734,-55855043,-40899846,88007957,-57387813,
+  Solution s;
+  //suchs!!!!!!!!!!!
+  /*
+   int arr[] = {91277418,66271374,38763793,4092006,11415077,60468277,1122637,72398035,-62267800,
+                22082642,60359529,-16540633,92671879,-64462734,-55855043,-40899846,88007957,-57387813,
 		-49552230,-96789394,18318594,-3246760,-44346548,-21370279,42493875,25185969,83216261,
 		-70078020,-53687927,-76072023,-65863359,-61708176,-29175835,85675811,-80575807,-92211746,
 		44755622,-23368379,23619674,-749263,-40707953,-68966953,72694581,-52328726,-78618474,
@@ -77,12 +92,12 @@ int main(){
 		-87994788,3460985,18744871,-49724457,-12982362,-47800372,39958829,-95981751,-71017359,-18397211,
 		27941418,-34699076,74174334,96928957,44328607,49293516,-39034828,5945763,-47046163,10986423,
 		63478877,30677010,-21202664,-86235407,3164123,8956697,-9003909,-18929014,-73824245};
-		*/
-	int arr[] = {-1,2,2,-5,0,-1,4};
-	vector<int> num;
-	for(int i = 0; i < sizeof(arr)/sizeof(int); ++i)
-		num.push_back(arr[i]);
-	vector<vector<int> > res = s.fourSum(num, 3);
-	getchar();
-	return 0;
+  */
+  int arr[] = {-1,2,2,-5,0,-1,4};
+  vector<int> num;
+  for(int i = 0; i < sizeof(arr)/sizeof(int); ++i)
+    num.push_back(arr[i]);
+  vector<vector<int> > res = s.fourSum(num, 3);
+  getchar();
+  return 0;
 }
