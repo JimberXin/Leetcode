@@ -1,10 +1,42 @@
-#include<iostream>
-#include<queue>
-#include<vector>
+//Last Modified: 2014/12/17
+//Author: Junbo Xin
 
-using namespace std;
+/*
+************************************Problem Description*******************************
+Given a binary tree, return the bottom-up level order traversal of its nodes' values.
+ (ie, from left to right, level by level from leaf to root).
 
-/**
+For example:
+Given binary tree {3,9,20,#,#,15,7},
+    3
+   / \
+  9  20
+    /  \
+   15   7
+return its bottom-up level order traversal as:
+[
+  [15,7],
+  [9,20],
+  [3]
+]
+confused what "{1,#,2,3}" means? > read more on how binary tree is serialized on OJ.
+
+
+OJ's Binary Tree Serialization:
+The serialization of a binary tree follows a level order traversal, 
+where '#' signifies a path terminator where no node exists below.
+
+Here's an example:
+   1
+  / \
+ 2   3
+    /
+   4
+    \
+     5
+The above binary tree is serialized as "{1,2,3,#,#,4,#,#,5}".
+
+
  * Definition for binary tree
  * struct TreeNode {
  *     int val;
@@ -12,7 +44,15 @@ using namespace std;
  *     TreeNode *right;
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
+
  */
+
+#include<iostream>
+#include<queue>
+#include<vector>
+
+using namespace std;
+
 struct TreeNode{
   int val;
   TreeNode* left;
@@ -29,28 +69,28 @@ public:
     //nextNum is the next level's total nodes number
     int curNum = 1;
     int nextNum = 0;
-    if(NULL ==  root)
+    if(root == NULL)
       return values ; // return [];
     q.push(root);
     pair.push_back(root->val);
     values.push_back(pair);
     pair.clear();
-    while( !q.empty()){
+    while(!q.empty()){
       root = q.front();
       q.pop();
-      curNum --;	   
-      if( NULL != root -> left){
+      --curNum;	   
+      if(root->left != NULL){
 	q.push(root->left);
-	pair.push_back(root -> left ->val);
-	nextNum ++;
+	pair.push_back(root->left->val);
+	++nextNum;
       }
-      if(NULL != root -> right){
-	q.push(root -> right);
-	pair.push_back(root -> right -> val);	
-	nextNum ++;
+      if(root->right != NULL){
+	q.push(root->right);
+	pair.push_back(root->right->val);	
+	++nextNum;
       }     		  
-      if( 0 == curNum){
-	if( !pair.empty() )
+      if(curNum == 0){
+	if(!pair.empty() )
 	  values.push_back(pair);
 	pair.clear();
 	curNum = nextNum;
@@ -67,14 +107,14 @@ public:
     int data;
     TreeNode* root;
     cin >> data;
-    if(data ==  -1)
+    if(data == -1)
       root = NULL;
     else
       {
 	root = (TreeNode*) malloc(sizeof(TreeNode));
-	root -> val =  data;
-	root -> left =  createTree();
-	root -> right = createTree();
+	root->val = data;
+	root->left = createTree();
+	root->right = createTree();
       }
     return root;
 			     
