@@ -1,9 +1,36 @@
-#include<iostream>
-#include<vector>
-#include<stack>
+//Last Modified: 2014/12/17
+//Author:  Junbo Xin
 
-using namespace std;
-/**
+/*
+//************************Problem Description*************************
+Given a binary tree, return the inorder traversal of its nodes' values.
+
+For example:
+Given binary tree {1,#,2,3},
+   1
+    \
+     2
+    /
+   3
+return [1,3,2].
+
+Note: Recursive solution is trivial, could you do it iteratively?
+
+OJ's Binary Tree Serialization:
+The serialization of a binary tree follows a level order traversal, 
+where '#' signifies a path terminator where no node exists below.
+
+Here's an example:
+   1
+  / \
+ 2   3
+    /
+   4
+    \
+     5
+The above binary tree is serialized as "{1,2,3,#,#,4,#,#,5}".
+
+
  * Definition for binary tree
  * struct TreeNode {
  *     int val;
@@ -11,7 +38,15 @@ using namespace std;
  *     TreeNode *right;
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
- */
+ 
+*/
+
+
+#include<iostream>
+#include<vector>
+#include<stack>
+
+using namespace std;
 
 struct TreeNode{
   int val;
@@ -25,17 +60,17 @@ public:
   vector<int> inorderTraversal(TreeNode *root){
     vector<int> values;
     stack<TreeNode*> BSstack;
-    while(NULL!=root || !BSstack.empty()){
+    while(root != NULL || !BSstack.empty()){
       //  Traversing the left nodes of root
-      while(NULL != root){
+      while(root != NULL){
 	BSstack.push(root);
-	root =  root -> left;
+	root = root->left;
       }					
-      if( !BSstack.empty()){
-	root =  BSstack.top();
-	values.push_back(root -> val);
+      if(!BSstack.empty()){
+	root = BSstack.top();
+	values.push_back(root->val);
 	BSstack.pop();
-	root =  root -> right;
+	root = root->right;
       }
     }
     return values;
@@ -52,9 +87,9 @@ public:
     else
       { 
 	root = (TreeNode*)malloc(sizeof(TreeNode));
-	root -> val = data;
-	root -> left  = createTree();
-	root -> right = createTree();
+	root->val = data;
+	root->left = createTree();
+	root->right = createTree();
       }
     return root;
   }
