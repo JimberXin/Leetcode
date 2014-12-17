@@ -1,3 +1,24 @@
+//Last Modified: 2014/12/17
+//Author: Junbo Xin
+
+/*
+//***********************Problem Description*****************************
+Given an array of strings, return all groups of strings that are anagrams.
+Note: All inputs will be in lower-case.
+For example:
+Input:¡¡  ["tea","and","ate","eat","den"]
+Output:   ["tea","ate","eat"]
+
+*****************************Solution*******************************
+Solution: hastTable records the string that has exist
+1)Traversing through all the strings, and sort the current string
+2)if the i-th string has not yet exist, add it in the hashTable
+3)if the i-th string has exist, and its index is not -1,
+that means this is the second time the string exists, 
+add the previous one, and the current one, and reset the index as -1
+
+*/
+
 #include<iostream>
 #include<vector>
 #include<string>
@@ -5,18 +26,6 @@
 #include<map>
 using namespace std;
 
-//Given an array of strings, return all groups of strings that are anagrams.
-//Note: All inputs will be in lower-case.
-//For example:
-//Input:¡¡  ["tea","and","ate","eat","den"]
-//Output:   ["tea","ate","eat"]
-
-//Solution: hastTable records the string that has exist
-//1)Traversing through all the strings, and sort the current string
-//2)if the i-th string has not yet exist, add it in the hashTable
-//3)if the i-th string has exist, and its index is not -1,
-//that means this is the second time the string 
-//exists, add the previous one, and the current one, and reset the index as -1
 class Solution {
 public:
   vector<string> anagrams(vector<string> &strs) {
