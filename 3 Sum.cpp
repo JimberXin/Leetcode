@@ -1,3 +1,22 @@
+//Last Modify: 2014/12/17
+//Author: Junbo Xin
+
+//********************************Problem Description***********************************
+/*
+Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0?
+ Find all unique triplets in the array which gives the sum of zero.
+
+Note:
+Elements in a triplet (a,b,c) must be in non-descending order. (ie, a ≤ b ≤ c)
+The solution set must not contain duplicate triplets.
+    For example, given array S = {-1 0 1 2 -1 -4},
+
+    A solution set is:
+    (-1, 0, 1)
+    (-1, -1, 2)
+*/
+
+
 #include<iostream>
 #include<vector>
 #include<algorithm>
@@ -6,9 +25,7 @@ using namespace std;
 
 class Solution {
 public:
-  vector<vector<int> > threeSum(vector<int> &num)
-  {
-    //
+  vector<vector<int> > threeSum(vector<int> &num) {
     sort(num.begin(),num.end());
     vector<vector < int> > result;
     vector<int> temp;
@@ -44,8 +61,7 @@ public:
 	  }
 	temp.pop_back();  // now has no element in temp
       }
-    return result;						 
-    //     
+    return result;						    
   }
 
   void DFS(vector<int> &num, int index1, int index2, int target,vector<int> &temp,vector<vector<int> > &result)
@@ -76,7 +92,7 @@ int main()
   for(int i=0;i<sizeof(arr)/sizeof(int);i++)
     num.push_back (arr[i]);
   vector<vector<int> > result = s.threeSum(num);	
-  vector<vector<int> > ::iterator outside;
+  vector<vector<int> >::iterator outside;
   vector<int>::iterator inside;
   for(outside = result.begin(); outside != result.end(); outside ++)
     {
