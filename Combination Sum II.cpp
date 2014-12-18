@@ -1,3 +1,25 @@
+//Last Modified:  2014/12/18
+//Author: Junbo Xin
+
+/*
+********************************Problem Description*********************************************
+Given a collection of candidate numbers (C) and a target number (T),
+ find all unique combinations in C where the candidate numbers sums to T.
+
+Each number in C may only be used once in the combination.
+
+Note:
+All numbers (including target) will be positive integers.
+Elements in a combination (a1, a2, … , ak) must be in non-descending order. (ie, a1 ≤ a2 ≤ … ≤ ak).
+The solution set must not contain duplicate combinations.
+For example, given candidate set 10,1,2,7,6,1,5 and target 8, 
+A solution set is: 
+[1, 7] 
+[1, 2, 5] 
+[2, 6] 
+[1, 1, 6] 
+*/
+
 #include<iostream>
 #include<vector>
 #include<algorithm>
@@ -22,13 +44,13 @@ public:
 
     int last = -1;  // mark last time vist
 
-    for(size_t  i= current; i< num.size(); i++){
+    for(size_t i= current; i< num.size(); ++i){
       if(last == num[i])  continue;   //make sure that the value has not yet been visited
       if(gap < num[i] )
 	return;    //cut it down
       last = num[i];
       temp.push_back(num[i]);
-      DFS(num,gap-num[i],i+1,temp,result);  //the current index becomes i+1, not i
+      DFS(num,gap-num[i],i+1,temp,result); //the current index becomes i+1, not i
       temp.pop_back ();
     }
   }
