@@ -1,9 +1,22 @@
-#include<iostream>
-#include<vector>
-#include<stack>
-using namespace std;
+//Last Modified: 2014/12/18
+//Author: Junbo Xin
 
-/**
+/*
+***********************Problem Description******************************
+Given a binary tree, return the postorder traversal of its nodes' values.
+
+For example:
+Given binary tree {1,#,2,3},
+   1
+    \
+     2
+    /
+   3
+return [3,2,1].
+
+Note: Recursive solution is trivial, could you do it iteratively?
+
+
  * Definition for binary tree
  * struct TreeNode {
  *     int val;
@@ -11,7 +24,14 @@ using namespace std;
  *     TreeNode *right;
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
- */
+*/
+
+
+#include<iostream>
+#include<vector>
+#include<stack>
+
+using namespace std;
 
 struct TreeNode{
   int val;
@@ -27,21 +47,21 @@ public:
     stack<TreeNode*> BSstack;
     TreeNode *last =  NULL;
     // Traversing the left nodes of T	 
-    while(NULL != root || !BSstack.empty()){
+    while(root != NULL || !BSstack.empty()){
       // Traversing the left nodes of root
-      while( NULL != root){
+      while(root != NULL){
 	BSstack.push(root);
-	root = root -> left;
+	root = root->left;
       }
-      root =  BSstack.top();
+      root = BSstack.top();
       // visit root node
-      if(NULL == root -> right || last == root -> right){
-	last  = root;
-	values.push_back(root ->val);
+      if(root->right == NULL || last == root->right){
+	last = root;
+	values.push_back(root->val);
 	BSstack.pop();
 	root = NULL;
       } else
-	root = root ->right;
+	root = root->right;
     }
     return values;
   }
@@ -51,14 +71,14 @@ public:
     int data; 
     TreeNode* root;
     cin >> data;
-    if( data == -1)
+    if(data == -1)
       root = NULL;
     else
       { 
 	root = (TreeNode*)malloc(sizeof(TreeNode));
-	root -> val = data;
-	root -> left  = createTree();
-	root -> right = createTree();
+	root->val = data;
+	root->left = createTree();
+	root->right = createTree();
       }
     return root;
   }
@@ -70,7 +90,7 @@ int main()
   Solution s;
   TreeNode *root =  s.createTree();
   vector<int> post = s.postorderTraversal(root);
-  for(vector<int>::iterator it = post.begin();it !=post.end(); it ++)
+  for(vector<int>::iterator it = post.begin();it !=post.end(); ++it)
     cout << *it << " " ;
   cout << endl;
   cin.get();
