@@ -1,18 +1,28 @@
+//Last Modified: 2014/12/18
+//Author: Junbo Xin
+
+/*
+*******************************Problem Description*********************************
+There are N children standing in a line. Each child is assigned a rating value.
+
+You are giving candies to these children subjected to the following requirements:
+
+Each child must have at least one candy.
+Children with a higher rating get more candies than their neighbors.
+What is the minimum candies you must give?
+
+*/
+
 #include<iostream>
 #include<vector>
 #include<string>
 using namespace std;
 
-/*There are N children standing in a line. Each child is assigned a rating value.
-You are giving candies to these children subjected to the following requirements:
-Each child must have at least one candy.
-Children with a higher rating get more candies than their neighbors.
-*/
 class Solution {
 public:
   int candy(vector<int> &ratings) {
     int n = ratings.size();
-    if( n < 0) return 0;
+    if(n < 0) return 0;
     vector<int> candy(n, 1);
     //from begin to end, bottom is 1
     for(int i = 1; i < n; ++i){
