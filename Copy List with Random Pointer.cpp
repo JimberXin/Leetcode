@@ -1,14 +1,20 @@
-#include<iostream>
-#include<vector>
-using namespace std;
-/**
+//Last Modified:  2014/12/19
+//Author:   Junbo Xin
+
+/*
+***************************Problem Description***************************
  * Definition for singly-linked list with a random pointer.
  * struct RandomListNode {
  *     int label;
  *     RandomListNode *next, *random;
  *     RandomListNode(int x) : label(x), next(NULL), random(NULL) {}
  * };
- */
+
+*/
+#include<iostream>
+#include<vector>
+using namespace std;
+
  struct RandomListNode {
    int label;
    RandomListNode *next, *random;
