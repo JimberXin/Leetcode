@@ -1,8 +1,35 @@
-#include<iostream>
-#include<stack>
-using namespace std;
+//Last Modified:  2014/12/21
+//Author:   Junbo Xin
 
-/**
+/*
+******************************Problem Description*************************************
+Given a binary tree, flatten it to a linked list in-place.
+
+For example,
+Given
+
+         1
+        / \
+       2   5
+      / \   \
+     3   4   6
+The flattened tree should look like:
+   1
+    \
+     2
+      \
+       3
+        \
+         4
+          \
+           5
+            \
+             6
+click to show hints.
+
+Hints:
+In the flattened tree, each node's right child points to the next node of a pre-order traversal.
+
  * Definition for binary tree
  * struct TreeNode {
  *     int val;
@@ -10,7 +37,13 @@ using namespace std;
  *     TreeNode *right;
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
- */
+ 
+*/
+
+#include<iostream>
+#include<stack>
+using namespace std;
+
 struct TreeNode{ 
   int val;
   TreeNode*left;
@@ -22,21 +55,21 @@ class Solution {
 public:
   void flatten(TreeNode *root){
     TreeNode* head = root;
-    while(NULL != root){
-      if(NULL != root ->left){
-	TreeNode* pt = root -> left;
-	while( NULL != pt -> right)
+    while(root != NULL){
+      if(root->left != NULL){
+	TreeNode* pt = root->left;
+	while(pt->right != NULL)
 	  pt =  pt -> right;
-	pt -> right =  root -> right;
-	root -> right = root -> left;
-	root -> left = NULL;
+	pt->right = root->right;
+	root->right = root->left;
+	root->left = NULL;
       }
       else
-	root = root -> right;
+	root = root->right;
     }
-    while( NULL != head){
-      cout << head -> val << " " ;
-      head =  head -> right;
+    while(head != NULL){
+      cout << head->val << " " ;
+      head =  head->right;
     }
   }
 
