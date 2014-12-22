@@ -1,3 +1,13 @@
+//Last Modified:  2014/12/22
+//Author:  Junbo Xin
+
+/*
+*********************Problem Description********************
+Given an integer, convert it to a roman numeral.
+
+Input is guaranteed to be within the range from 1 to 3999.
+*/
+
 #include<iostream>
 #include<string>
 #include<vector>
