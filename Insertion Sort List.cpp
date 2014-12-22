@@ -1,17 +1,23 @@
-#include<iostream>
-using namespace std;
+//Last Modified:  2014/12/22
+//Author:  Junbo Xin
 
-/**
+/*
+****************Problem Description***************
+Sort a linked list using insertion sort.
+
  * Definition for singly-linked list.
  * struct ListNode {
  *     int val;
  *     ListNode *next;
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
- */
 
-struct ListNode
-{ 
+*/
+
+#include<iostream>
+using namespace std;
+
+struct ListNode { 
   int val;
   ListNode *next;
   ListNode(int x) : val(x),next(NULL){}
@@ -23,31 +29,31 @@ public:
   {
     //last remains the already sorted list.
     ListNode* pre,*cur,*nex, *key,*last;
-    if( NULL == head || NULL == head -> next)
+    if(head == NULL || head->next == NULL)
       return head;
     last = head;
-    key = head -> next;
-    while(NULL != last){
+    key = head->next;
+    while(last != NULL){
       pre = NULL;
       cur =  head;
-      key = last -> next;
-      if( NULL ==  key)
+      key = last->next;
+      if(key == NULL)
 	return head;
       else
-	nex = key -> next;
-      while( cur != last && key -> val >= cur -> val)
+	nex = key->next;
+      while(cur != last && key->val >= cur->val)
 	{
 	  pre = cur;
 	  cur = cur -> next;
 	}
-      if( key -> val <  cur -> val)
+      if(key->val < cur->val)
 	{
-	  last -> next = nex;
-	  key -> next = cur;
-	  if( NULL ==  pre)
+	  last->next = nex;
+	  key->next = cur;
+	  if(pre == NULL)
 	    head = key;
 	  else
-	    pre -> next  = key;
+	    pre->next  = key;
 	}
       else
 	last = key;
