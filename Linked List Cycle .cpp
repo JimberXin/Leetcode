@@ -1,3 +1,13 @@
+//Last Modified:  2014/12/23
+//Author:  Junbo Xin
+
+/***************Problem Description**************
+Given a linked list, determine if it has a cycle in it.
+
+Follow up:
+Can you solve it without using extra space?
+
+
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -6,6 +16,7 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+
 #include<iostream>
 using namespace std;
 
@@ -20,12 +31,12 @@ public:
   bool hasCycle(ListNode *head) {
     struct ListNode*  slow, *fast;
     slow =  fast = head;
-    if( NULL ==  head || NULL ==  head -> next)
+    if(head == NULL || head->next == NULL)
       return false;
-    while(fast != NULL && fast -> next != NULL)
+    while(fast != NULL && fast->next != NULL)
       {
-	fast =  fast -> next -> next;
-	slow = slow -> next;
+	fast =  fast->next->next;
+	slow = slow->next;
 	if(fast == slow)
 	  return true;
       }
@@ -39,7 +50,7 @@ public:
     if(head == NULL || head->next == NULL)
       return NULL;
     while(fast != NULL && fast->next != NULL) {
-      fast =  fast -> next -> next;
+      fast = fast->next->next;
       slow = slow -> next;
       if(fast == slow)
 	break;
@@ -49,8 +60,8 @@ public:
     slow =  head;
     while(slow != fast)
       {
-	fast = fast -> next;
-	slow = slow -> next;
+	fast = fast->next;
+	slow = slow->next;
       }
     return slow;
   }
@@ -74,11 +85,11 @@ int main() {
   for(i=0;i<sizeof(num)/sizeof(int);i++)
     {
       ListNode* tmp =  (ListNode*) malloc(sizeof(ListNode));
-      tmp -> val = num[i];
-      current  -> next  = tmp;
-      current =  current -> next;
+      tmp->val = num[i];
+      current->next = tmp;
+      current = current->next;
     }
-  current -> next  = NULL;
+  current->next = NULL;
   // current -> next =  pt-> next -> next -> next ->  next;
   //printList(pt -> next);
   bool isCircle = s.hasCycle(pt->next);
