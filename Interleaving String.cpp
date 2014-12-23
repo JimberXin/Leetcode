@@ -1,23 +1,30 @@
+//Last Modified: 2014/12/23
+//Author:  Junbo Xin
+
+/*
+***********************************Problem Description**********************************
+For example, Given:
+s1 = "aabcc",
+s2 = "dbbca",
+When s3 = "aadbbcbcac", return true.
+When s3 = "aadbbbaccc", return false.
+
+************************************Solution****************************************
+isPart[i][j] is a bool array, means now in s3: s1 has i elements, s2 has j elements
+For the initilization, if j==0, which denotes that s2 has no elments in s3, 
+all the elements in s3 are the same with s1, if s1[i] != s3[i], just break out.
+Same case if i==0
+For the state shift problem, isPart[i][j] can departed into two cases:
+1) s1[i-1] == s3[i+j-1] and isPart[i-1][j] is true.     or
+2) s2[j-1] == s3[i+j-1] and isPart[i][j-1] is true.
+
+*/
+
 #include<iostream>
 #include<string>
 #include<vector>
 using namespace std;
 
-//*****************Interleaving String******************************
-//Given s1, s2, s3, find whether s3 is formed by the interleaving of s1 and s2.
-//For example, Given:
-//s1 = "aabcc",
-//s2 = "dbbca",
-//When s3 = "aadbbcbcac", return true.
-//When s3 = "aadbbbaccc", return false.
-
-//****Solution****
-//isPart[i][j] is a bool array, means now in s3: s1 has i elements, s2 has j elements
-//For the initilization, if j==0, which denotes that s2 has no elments in s3, 
-//all the elements in s3 are the same with s1, if s1[i] != s3[i], just break out. Same case if i==0
-//For the state shift problem, isPart[i][j] can departed into two cases:
-//1) s1[i-1] == s3[i+j-1] and isPart[i-1][j] is true.     or
-//2) s2[j-1] == s3[i+j-1] and isPart[i][j-1] is true.
 
 class Solution{
 public:
