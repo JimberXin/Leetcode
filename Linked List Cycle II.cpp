@@ -1,14 +1,26 @@
-#include<iostream>
-#include<vector>
-using namespace std;
-/**
+//Last Modified:  2014/12/23
+//Author:  Junbo Xin
+
+/*
+********************Problem Description*********************
+Given a linked list, return the node where the cycle begins.
+ If there is no cycle, return null.
+
+Follow up:
+Can you solve it without using extra 
+
  * Definition for singly-linked 
  * struct ListNode {
  *     int val;
  *     ListNode *next;
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
- */
+*/
+
+#include<iostream>
+#include<vector>
+using namespace std;
+
 struct ListNode {
   int val;
   ListNode *next;
@@ -19,16 +31,17 @@ class Solution {
 public:
   ListNode *detectCycle(ListNode *head) {
     ListNode *fast, *slow;
-    if(!head||!head->next) return NULL;
+    if(head == NULL || head->next == NULL) return NULL;
     fast = slow = head;
-    while(fast && fast->next){
+    while(fast != NULL && fast->next != NULL){
       slow = slow->next;
       fast = fast->next->next;
-      if(fast==slow) break;
+      if(fast == slow) break;
     }
-    if(!fast||!fast->next) return NULL; 
+    if(fast == NULL ||fast->next == NULL)
+      return NULL; 
     slow = head;
-    while(slow!=fast){
+    while(slow != fast){
       slow = slow->next;
       fast = fast->next;
     }
