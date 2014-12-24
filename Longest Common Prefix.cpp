@@ -17,7 +17,7 @@ public:
     for(int i = 0; i < n; ++i){
       if( i == idx) continue;
       int curLen = 0;
-      for(int j =0; j < strs[i].length() && j < maxLen; ++j) {
+      for(int j = 0; j < strs[i].length() && j < maxLen; ++j) {
 	if(strs[i][j] == strs[idx][j]) 
 	  curLen ++;
 	else

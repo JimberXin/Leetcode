@@ -37,7 +37,7 @@ int main(void){
   vector<int> num;
   for(int i = 0; i< sizeof(arr)/sizeof(int); i++)
     num.push_back(arr[i]);
-  int  res = s.longestConsecutive(num);
+  int res = s.longestConsecutive(num);
   getchar();
   return 0;
 }

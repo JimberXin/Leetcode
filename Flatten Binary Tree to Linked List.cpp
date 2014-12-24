@@ -59,7 +59,7 @@ public:
       if(root->left != NULL){
 	TreeNode* pt = root->left;
 	while(pt->right != NULL)
-	  pt =  pt -> right;
+	  pt = pt -> right;
 	pt->right = root->right;
 	root->right = root->left;
 	root->left = NULL;
@@ -78,7 +78,7 @@ public:
     int data; 
     TreeNode* root;
     cin >> data;
-    if( data == -1)
+    if(data == -1)
       root = NULL;
     else
       { 

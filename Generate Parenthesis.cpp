@@ -20,7 +20,7 @@ class Solution {
 public:
   void generate(int leftNum, int rightNum, string s, vector<string> &result)
   {
-    if(leftNum == 0 &&  rightNum ==0)
+    if(leftNum == 0 && rightNum ==0)
       {
 	result.push_back(s);
 	return;
