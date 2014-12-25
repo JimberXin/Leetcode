@@ -1,17 +1,24 @@
+//Last Modified:  2014/12/25
+//Author:   Junbo Xin
+
+/*
+****************************Problem Description*****************************
+Design and implement a data structure for Least Recently Used (LRU) cache. 
+It should support the following operations: get and set.
+
+get(key) - Get the value (will always be positive) of the key if the key 
+exists in the cache, otherwise return -1.
+set(key, value) - Set or insert the value if the key is not already present.
+When the cache reached its capacity, it should invalidate the least recently
+ used item before inserting a new item.
+*/
+
 #include<iostream>
 #include<vector>
 #include<map>
 #include<unordered_map>
 #include<string>
 using namespace std;
-
-//Design and implement a data structure for Least Recently Used (LRU) cache. 
-//It should support the following operations: get and set.
-//get(key) - Get the value (will always be positive) of the key
-//if the key exists in the cache, otherwise return -1.
-//set(key, value) - Set or insert the value if the key is not already present.
-//When the cache reached its capacity, 
-//it should invalidate the least recently used item before inserting a new item.
 
 class LRUCache{
 public:
@@ -29,34 +36,34 @@ public:
     head = new Node();
     tail = new Node();
     hashTable.clear();
-    head -> nex = tail;
-    tail -> pre = head;
+    head->nex = tail;
+    tail->pre = head;
     capacity = c;
     size = 0;
   }
     
   int get(int key) {
     unordered_map<int, Node*>::iterator it = hashTable.find(key);
-    if( it == hashTable.end() )
+    if(it == hashTable.end() )
       return -1;
     //recently used the key, move it to the head
-    Node* p = it -> second;
-    p -> nex -> pre  = p -> pre;
-    p -> pre -> nex = p -> nex;
+    Node* p = it->second;
+    p->nex->pre = p->pre;
+    p->pre->nex = p->nex;
     addToHead(p);
-    return p -> value ;	
+    return p->value ;	
   }
     
   void set(int key, int value) {
     if(capacity < 1) return;
     unordered_map<int, Node*>::iterator it = hashTable.find(key);
     //the node is already in the cache
-    if( it != hashTable.end()){
-      Node* p = it -> second;
-      p -> nex -> pre = p -> pre;
-      p -> pre -> nex = p -> nex;
+    if(it != hashTable.end()){
+      Node* p = it->second;
+      p->nex->pre = p->pre;
+      p->pre->nex = p->nex;
       addToHead(p);
-      p -> value = value;
+      p->value = value;
     }else{ // the node is not yet in the cache
       Node* p = new Node(key, value);
       addToHead(p);
@@ -64,9 +71,9 @@ public:
       ++size;
       //reach the capacity, invalidate the least recently used item
       if(size > capacity){
-	p = tail -> pre;
-	tail -> pre = p -> pre;
-	p -> pre -> nex = tail;
+	p = tail->pre;
+	tail->pre = p->pre;
+	p->pre->nex = tail;
 	it = hashTable.find(p->key);
 	hashTable.erase(it);
 	delete p;
@@ -75,11 +82,12 @@ public:
   }
 
   void addToHead(Node* p){
-    p -> nex = head -> nex;
-    head -> nex -> pre = p;
-    head -> nex = p;
-    p -> pre = head;
+    p->nex = head->nex;
+    head->nex->pre = p;
+    head->nex = p;
+    p->pre = head;
   }
+  
 private:
   int capacity;
   int size;
