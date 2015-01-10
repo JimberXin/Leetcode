@@ -1,17 +1,26 @@
-#include<iostream>
-#include<vector>
-#include<algorithm>
+//Last Modified:  2015/01/10
+//Author:  Junbo Xin
 
-using namespace std;
-#define MAX 1000000
-/**
+/*
+**********************Problem Description*********************
+Merge k sorted linked lists and return it as one sorted list.
+Analyze and describe its complexity.
+
  * Definition for singly-linked list.
  * struct ListNode {
  *     int val;
  *     ListNode *next;
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
- */
+*/
+
+#include<iostream>
+#include<vector>
+#include<algorithm>
+
+using namespace std;
+#define MAX 1000000
+
 struct ListNode {
   int val;
   ListNode *next;
@@ -52,7 +61,9 @@ public:
 	vector<ListNode*>::iterator it;
 	for(it = ++lists.begin();it !=  lists.end(); it++)
 	   newlist = merge2Lists(newlist,*it);
-	return newlist;  */
+	return newlist; 
+   */
+    
     if(lists.size() == 0)
       return NULL;
     size_t size = lists.size();
