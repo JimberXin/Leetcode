@@ -1,10 +1,9 @@
-#include<iostream>
-#include<vector>
-#include<map>
+//Last Modified:  2015/01/10
+//Author:   Junbo Xin
 
-using namespace std;
+/*
+Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.
 
-/**
  * Definition for a point.
  * struct Point {
  *     int x;
@@ -12,7 +11,16 @@ using namespace std;
  *     Point() : x(0), y(0) {}
  *     Point(int a, int b) : x(a), y(b) {}
  * };
- */
+
+*/
+
+#include<iostream>
+#include<vector>
+#include<map>
+
+using namespace std;
+
+
 struct Point {
   int x;
   int y;
@@ -45,8 +53,8 @@ public:
       map<float,int>::iterator it;
       for(it = HashMap.begin(); it != HashMap.end(); it++)
 	{
-	  if(it ->second + duplicates > maxNum)
-	    maxNum = it -> second + duplicates;
+	  if(it->second + duplicates > maxNum)
+	    maxNum = it->second + duplicates;
 	}
       HashMap.clear();
     }
