@@ -1,10 +1,14 @@
-#include<iostream>
-#include<algorithm>
-#include<vector>
+//Last Modified:  2015/01/10
+//Author:  Junbo Xin
 
-using namespace std;
+/*
+**********************Problem Description************************
+Given a collection of intervals, merge all overlapping intervals.
+For example,
+Given [1,3],[2,6],[8,10],[15,18],
+return [1,6],[8,10],[15,18].
 
-/**
+
  * Definition for an interval.
  * struct Interval {
  *     int start;
@@ -12,7 +16,15 @@ using namespace std;
  *     Interval() : start(0), end(0) {}
  *     Interval(int s, int e) : start(s), end(e) {}
  * };
- */
+
+*/
+
+#include<iostream>
+#include<algorithm>
+#include<vector>
+
+using namespace std;
+
 struct Interval{
   int start;
   int end;
@@ -23,7 +35,7 @@ struct Interval{
 class Compare
 {
 public:
-  bool  operator()(const Interval& I1, const Interval& I2)
+  bool operator()(const Interval& I1, const Interval& I2)
   {
     return I1.start < I2.start? true:false;
   }
@@ -44,11 +56,11 @@ public:
        while( (current+1) != intervals.end() )
        {
           next = current +1;
-	  if( next->start  <= current -> end && next ->end <= current -> end )
+	  if(next->start <= current->end && next->end <= current->end)
 	  intervals.erase(next);
-	  else if(next -> start  <= current -> end && next -> end >= current -> end)
+	  else if(next->start <= current->end && next->end >= current->end)
 	  {
-	     current -> end = next -> end;
+	     current->end = next->end;
 	     intervals.erase(next);
 	  }
 	  else
