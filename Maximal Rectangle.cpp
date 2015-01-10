@@ -1,18 +1,26 @@
+//Last Modified:  2015/01/10
+//Author:  Junbo Xin
+
+
+/*
+***********************Problem Description**************************
+Given a 2D binary matrix filled with 0's and 1's, 
+find the largest rectangle containing all ones and return its area.
+      0  1  1  0  1           0   1   1   0   1            2
+      1  1  0  1  0           1   2   0   1   0            2
+      0  1  1  1  0   ==>     0   3   1   2   0   ==>      3
+      1  1  1  1  0           1   4   2   3   0            6
+      1  1  1  1  1           2   5   3   4   1            9
+
+http://www.tuicool.com/articles/6vmyyi
+*/
+
 #include<iostream>
 #include<vector>
 #include<stack>
 #include<string>
 using namespace std;
 
-//Given a 2D binary matrix filled with 0's and 1's, 
-//find the largest rectangle containing all ones and return its area.
-//      0  1  1  0  1           0   1   1   0   1            2
-//      1  1  0  1  0           1   2   0   1   0            2
-//      0  1  1  1  0   ==>     0   3   1   2   0   ==>      3
-//      1  1  1  1  0           1   4   2   3   0            6
-//      1  1  1  1  1           2   5   3   4   1            9
-
-//http://www.tuicool.com/articles/6vmyyi
 
 class Solution {
 public:
