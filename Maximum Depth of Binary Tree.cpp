@@ -1,9 +1,15 @@
-#include<iostream>
-using namespace std;
-#define max(a,b)((a)>(b)?(a):(b))
+//Last Modified:   2015/01/10
+//Author:    Junbo Xin
 
 
-/**
+/*
+************************Problem Description*********************************
+Given a binary tree, find its maximum depth.
+
+The maximum depth is the number of nodes along the longest path from the root
+ node down to the farthest leaf node.
+
+
  * Definition for binary tree
  * struct TreeNode {
  *     int val;
@@ -11,7 +17,12 @@ using namespace std;
  *     TreeNode *right;
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
- */
+*/
+
+
+#include<iostream>
+using namespace std;
+#define max(a,b)((a)>(b)?(a):(b))
 
 struct TreeNode {
   int val;

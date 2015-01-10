@@ -1,15 +1,23 @@
+//Last Modified:  2015/01/10
+//Author:  Junbo Xin
+
+/*
+*********************************Problem Description******************************
+Find the contiguous subarray within an array (containing at least one number)
+which has the largest product.
+For example, given the array [2,3,-2,4],
+the contiguous subarray [2,3] has the largest product = 6.
+*/
+
 #include<iostream>
 using namespace std;
 
-//Find the contiguous subarray within an array (containing at least one number) which has the largest product.
-//For example, given the array [2,3,-2,4],
-//the contiguous subarray [2,3] has the largest product = 6.
 class Solution {
 public:
     int maxProduct(int A[], int n) {
-      int maxRes = A[0];  //records the current position max product, shoule include A[i]
-      int minRes = A[0];  //records the current position min product, should include A[i]
-      int result = A[0];    // recodrds the final result
+      int maxRes = A[0]; //current position max product, shoule include A[i]
+      int minRes = A[0]; //current position min product, should include A[i]
+      int result = A[0];  // recodrds the final result
       for(int i = 1; i < n; ++i){
 	if(A[i]  < 0){
 	  int temp = maxRes;
